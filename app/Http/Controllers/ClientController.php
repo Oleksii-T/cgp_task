@@ -42,6 +42,7 @@ class ClientController extends Controller
         $input = $request->validated();
         $c = new Client($input);
         $c->save();
+        // make array from string of companies ids and save to pivot table
         if ($input['companies']) {
             $c->companies()->attach( array_unique(explode(', ', $input['companies'])) );
         }
@@ -67,9 +68,18 @@ class ClientController extends Controller
      * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClientRequest $request, $cr)
+    public function update(UpdateClientRequest $request, $client)
     {
-        
+        $c = Client::findOrFail($client);
+        $input = $request->validated();
+        $c->update($input);
+        // remove all relations from pivot table
+        $c->companies()->detach();
+        // make array from string of companies ids and save to pivot table
+        if ($input['companies']) {
+            $c->companies()->attach( array_unique(explode(', ', $input['companies'])) );
+        }
+        return redirect(route('client.index'));
     }
 
     /**

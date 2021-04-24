@@ -31,7 +31,8 @@
                         <div class="card-header">
                             <h3 class="card-title">Create new client</h3>
                         </div>
-                        <form method="post" action="{{route('client.store')}}">
+                        <form method="post" action="{{route('client.update', ['client'=>$c->id])}}">
+                            @method('PATCH')
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">

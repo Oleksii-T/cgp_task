@@ -18,12 +18,16 @@ use App\Models\Company;
 |
 */
 
+// authentication routes
 Route::post('/register',    [AuthApiController::class, 'register']);
 Route::post('/login',       [AuthApiController::class, 'login']);
 
+// protect routes via Bearer token using Sanctum package
 Route::middleware('auth:sanctum')->group(function () {
+    // authentication logout routes
     Route::post('/logout',      [AuthApiController::class, 'logout']);
 
+    // 3 api method from given task
     Route::get ('/companies',                   [CompanyApiController::class, 'getCompanies']); //list of companies
     Route::get ('/companies/{company}/clients', [CompanyApiController::class, 'getClients']); // list of clients of exact company
     Route::get ('/clients/{client}/companies',  [ClientApiController::class, 'getClientCompanies']); //list of companies of client

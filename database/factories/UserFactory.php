@@ -22,7 +22,6 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        /*
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -30,7 +29,7 @@ class UserFactory extends Factory
             'password' => bcrypt(Str::random(10)),
             'remember_token' => Str::random(10),
         ];
-        */
+        /*
         return [
             'name' => 'admin',
             'email' => 'admin@mail.mail',
@@ -38,6 +37,7 @@ class UserFactory extends Factory
             'password' => bcrypt('admin'),
             'remember_token' => Str::random(10),
         ];
+        */
     }
 
     /**

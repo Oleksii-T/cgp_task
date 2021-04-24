@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
+//component containing server-form-input-error tamplate. Just to save some typing.
 class serverInputError extends Component
 {
     public $inputName;

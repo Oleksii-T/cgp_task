@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 
+// base class takes care of serializing result into meaningful JSON
 class BaseApiController extends Controller
 {
     /**
-     * success response method.
+     * Serialize and send data as sucess response
      *
-     * @return \Illuminate\Http\Response
+     * @param  $result result object of http request
+     * @param  string  $messsage additional user frendly message
+     * @return \Illuminate\Http\Response json response
      */
     public function sendResponse($result, $message)
     {
@@ -24,7 +27,7 @@ class BaseApiController extends Controller
     }
 
     /**
-     * return error response.
+     * Serialize and send data as error response
      *
      * @return \Illuminate\Http\Response
      */

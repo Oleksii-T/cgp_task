@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 
+// API authentication
 class AuthApiController extends BaseApiController
 {
+    /**
+     * register user
+     *
+     * @param  Request new user data
+     * @return \Illuminate\Http\Response
+     */
     public function register(Request $request) {
         $fields = $request->validate([
             'name' => 'required|string',
@@ -33,6 +40,12 @@ class AuthApiController extends BaseApiController
         return $this->sendResponse($response, 'Registation successful!');
     }
 
+    /**
+     * login user and create new token
+     *
+     * @param  Request new user data
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request) {
         $fields = $request->validate([
             'email' => 'required|string',
@@ -57,6 +70,12 @@ class AuthApiController extends BaseApiController
         return $this->sendResponse($response, 'Log in successful!');
     }
 
+    /**
+     * delete user tokens
+     *
+     * @param  Request
+     * @return \Illuminate\Http\Response
+     */
     public function logout(Request $request) {
         auth()->user()->tokens()->delete();
 

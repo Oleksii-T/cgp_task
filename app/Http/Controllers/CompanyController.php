@@ -40,6 +40,7 @@ class CompanyController extends Controller
         $input = $request->validated();
         $c = new Company($input);
         $c->save();
+        //make array from string of client ids and save to pivot table
         if ($input['clients'] != '') {
             $c->clients()->attach( array_unique(explode(', ', $input['clients'])) );
         }
@@ -70,7 +71,9 @@ class CompanyController extends Controller
         $c = Company::findOrFail($id);
         $input = $request->validated();
         $c->update($input);
+        // remove all relations from pivot table
         $c->clients()->detach();
+        // make array from string of client ids and save to pivot table
         $c->clients()->attach( array_unique(explode(', ', $input['clients'])) );
         return redirect(route('company.index'));
     }

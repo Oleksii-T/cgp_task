@@ -5,7 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\ValidCompanyIds;
 
-class CreateClientRequest extends FormRequest
+//validation of client updating
+class UpdateClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,9 +15,7 @@ class CreateClientRequest extends FormRequest
      */
     public function authorize()
     {
-        if (auth()->user()) {
-            return true;
-        }
+        return true;
     }
 
     /**

@@ -16,8 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create();
+        // genarate user accounts
+        User::factory()->count(11000)->create();
 
+        // generate company records with ralationship to clients records
         Company::factory()
             ->hasAttached(
                 Client::factory()->count( rand(3,10) )

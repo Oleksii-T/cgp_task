@@ -15,10 +15,10 @@ use App\Http\Controllers\ClientController;
 |
 */
 
-//Auth::routes();
-
+// main dashboard
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     
+//clients routes
 //Route::resource('clients', ClientController::class);
 Route::get      ('/clients',              [ClientController::class, 'index'])   ->name('client.index');
 Route::get      ('/clients/create',       [ClientController::class, 'create'])  ->name('client.create');
@@ -27,7 +27,7 @@ Route::get      ('/clients/{client}',     [ClientController::class, 'edit'])    
 Route::patch    ('/clients/{client}',     [ClientController::class, 'update'])  ->name('client.update');
 Route::delete   ('/clients/{client}',     [ClientController::class, 'destroy']) ->name('client.destroy');
 
-
+//companies routes
 //Route::resource('companies', CompanyController::class);
 Route::get      ('/companies',              [CompanyController::class, 'index'])   ->name('company.index');
 Route::get      ('/companies/create',       [CompanyController::class, 'create'])  ->name('company.create');
